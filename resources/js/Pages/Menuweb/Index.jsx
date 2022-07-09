@@ -8,7 +8,7 @@ import EditUser from "../../Components/Dashboard/Users/EditUser";
 import { Inertia } from "@inertiajs/inertia";
 
 export default function Index(props) {
-    const { data: users, links, meta } = props.users;
+    const { data: menuweb, links, meta } = props.menuweb;
     const [state, setState] = useState([]);
     const [addDialogHandler, addCloseTrigger, addTrigger] = useDialog();
     const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
@@ -26,7 +26,7 @@ export default function Index(props) {
     };
 
     const destroyUser = () => {
-        Inertia.delete(route("users.destroy", state.id), {
+        Inertia.delete(route("menuweb.destroy", state.id), {
             onSuccess: () => destroyCloseTrigger(),
         });
     };
@@ -107,20 +107,19 @@ export default function Index(props) {
                                                     Name
                                                 </th>
                                                 <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">
-                                                    Username
+                                                    Description
                                                 </th>
                                                 <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">
-                                                    Email
+                                                    Published
                                                 </th>
-                                                {/* <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">Address</th> */}
                                                 <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
                                                     Actions
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {users.map((user, index) => (
-                                                <tr key={user.id}>
+                                            {menuweb.map((menuweb, index) => (
+                                                <tr key={menuweb.id}>
                                                     <td className="text-center">
                                                         {meta.from + index}
                                                     </td>
@@ -134,26 +133,27 @@ export default function Index(props) {
                                                             </div>
                                                             <div className="my-auto">
                                                                 <h6 className="mb-0 text-sm">
-                                                                    {user.name}
+                                                                    {
+                                                                        menuweb.name
+                                                                    }
                                                                 </h6>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td className="text-left">
                                                         <p className="text-sm font-weight-bold mb-0">
-                                                            {user.username}
+                                                            {
+                                                                menuweb.description
+                                                            }
                                                         </p>
                                                     </td>
                                                     <td className="text-left">
                                                         <span className="text-xs font-weight-bold">
-                                                            {user.email}
+                                                            {menuweb.isPub == 1
+                                                                ? "yes"
+                                                                : "no"}
                                                         </span>
                                                     </td>
-                                                    {/* <td className="align-middle text-left">
-                                                    <div className="d-flex align-items-center text-left">
-                                                        <span className="text-xs font-weight-bold mb-0">{user.address}</span>
-                                                    </div>
-                                                </td> */}
                                                     <td
                                                         className="align-middle text-center"
                                                         width="10%"

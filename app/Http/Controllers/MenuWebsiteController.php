@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\MenuWebsite;
 use App\Http\Requests\StoreMenuWebsiteRequest;
 use App\Http\Requests\UpdateMenuWebsiteRequest;
+use App\Http\Resources\MenuWebsiteResource;
+use Inertia\Inertia;
 
 class MenuWebsiteController extends Controller
 {
@@ -15,7 +17,12 @@ class MenuWebsiteController extends Controller
      */
     public function index()
     {
-        //
+        // $menuWebsite = MenuWebsite::latest()->get();
+        $menuweb = MenuWebsiteResource::collection(MenuWebsite::latest()->paginate(10));
+        return inertia('Menuweb/Index', [
+            'menuweb' => $menuweb,
+        ]);
+        // return Inertia::render('Menuweb/Index', ['menuweb' => $menuweb]);
     }
 
     /**
