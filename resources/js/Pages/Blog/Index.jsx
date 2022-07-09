@@ -9,7 +9,7 @@ import { Inertia } from "@inertiajs/inertia";
 
 export default function Index(props) {
     const title = props.title;
-    const { data: menuweb, links, meta } = props.menuweb;
+    const { data: blog, links, meta } = props.blog;
     const [state, setState] = useState([]);
     const [addDialogHandler, addCloseTrigger, addTrigger] = useDialog();
     const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
@@ -27,7 +27,7 @@ export default function Index(props) {
     };
 
     const destroyUser = () => {
-        Inertia.delete(route("menuweb.destroy", state.id), {
+        Inertia.delete(route("blog.destroy", state.id), {
             onSuccess: () => destroyCloseTrigger(),
         });
     };
@@ -108,7 +108,10 @@ export default function Index(props) {
                                                     Name
                                                 </th>
                                                 <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">
-                                                    Description
+                                                    Category
+                                                </th>
+                                                <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">
+                                                    Author
                                                 </th>
                                                 <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">
                                                     Published
@@ -119,8 +122,8 @@ export default function Index(props) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {menuweb.map((menuweb, index) => (
-                                                <tr key={menuweb.id}>
+                                            {blog.map((blog, index) => (
+                                                <tr key={blog.id}>
                                                     <td className="text-center">
                                                         {meta.from + index}
                                                     </td>
@@ -134,23 +137,24 @@ export default function Index(props) {
                                                             </div>
                                                             <div className="my-auto">
                                                                 <h6 className="mb-0 text-sm">
-                                                                    {
-                                                                        menuweb.name
-                                                                    }
+                                                                    {blog.name}
                                                                 </h6>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td className="text-left">
                                                         <p className="text-sm font-weight-bold mb-0">
-                                                            {
-                                                                menuweb.description
-                                                            }
+                                                            {blog.blogcat}
+                                                        </p>
+                                                    </td>
+                                                    <td className="text-left">
+                                                        <p className="text-sm font-weight-bold mb-0">
+                                                            {blog.author}
                                                         </p>
                                                     </td>
                                                     <td className="text-left">
                                                         <span className="text-xs font-weight-bold">
-                                                            {menuweb.isPub == 1
+                                                            {blog.isPub == 1
                                                                 ? "yes"
                                                                 : "no"}
                                                         </span>
@@ -223,5 +227,5 @@ export default function Index(props) {
 }
 
 Index.layout = (page) => (
-    <Base key={page} children={page} title={`Manage Menu Website`} />
+    <Base key={page} children={page} title={`Manage Blog`} />
 );

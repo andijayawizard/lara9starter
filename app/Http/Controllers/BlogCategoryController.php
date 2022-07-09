@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\BlogCategory;
 use App\Http\Requests\StoreBlogCategoryRequest;
 use App\Http\Requests\UpdateBlogCategoryRequest;
+use App\Http\Resources\BlogCategoryResource;
 
 class BlogCategoryController extends Controller
 {
+    protected $title = 'Blog Category';
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +17,9 @@ class BlogCategoryController extends Controller
      */
     public function index()
     {
-        //
+        // $blogcat = BlogCategory::all();
+        $blogcat = BlogCategoryResource::collection(BlogCategory::latest()->paginate(10));
+        return inertia('BlogCategory/Index', ['title' => $this->title, 'blogcat' => $blogcat]);
     }
 
     /**

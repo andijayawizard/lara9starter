@@ -10,6 +10,7 @@ use Inertia\Inertia;
 
 class MenuWebsiteController extends Controller
 {
+    protected $title = 'Menu Website';
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +21,7 @@ class MenuWebsiteController extends Controller
         // $menuWebsite = MenuWebsite::latest()->get();
         $menuweb = MenuWebsiteResource::collection(MenuWebsite::latest()->paginate(10));
         return inertia('Menuweb/Index', [
+            'title' => $this->title,
             'menuweb' => $menuweb,
         ]);
         // return Inertia::render('Menuweb/Index', ['menuweb' => $menuweb]);

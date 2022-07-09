@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Http\Resources\BlogResource;
 
 class BlogController extends Controller
 {
+    protected $title = 'Blog';
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +17,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blog = BlogResource::collection(Blog::select('blogs.*', 'blog_categories.name as blogcat', 'users.name as author')
+            ->join('blog_categories', 'blog_categories.id', '=', 'blogs.category_id')
+            ->join('users', 'users.id', '=', 'blogs.user_id')
+            ->latest()->paginate(10));
+        return inertia('Blog/Index', ['title' => $this->title, 'blog' => $blog]);
     }
 
     /**

@@ -9,7 +9,7 @@ import { Inertia } from "@inertiajs/inertia";
 
 export default function Index(props) {
     const title = props.title;
-    const { data: menuweb, links, meta } = props.menuweb;
+    const { data: menuweb, links, meta } = props.blogcat;
     const [state, setState] = useState([]);
     const [addDialogHandler, addCloseTrigger, addTrigger] = useDialog();
     const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
@@ -107,9 +107,6 @@ export default function Index(props) {
                                                 <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">
                                                     Name
                                                 </th>
-                                                <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-left">
-                                                    Description
-                                                </th>
                                                 <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-left opacity-7 ps-2">
                                                     Published
                                                 </th>
@@ -140,13 +137,6 @@ export default function Index(props) {
                                                                 </h6>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                    <td className="text-left">
-                                                        <p className="text-sm font-weight-bold mb-0">
-                                                            {
-                                                                menuweb.description
-                                                            }
-                                                        </p>
                                                     </td>
                                                     <td className="text-left">
                                                         <span className="text-xs font-weight-bold">
@@ -223,5 +213,5 @@ export default function Index(props) {
 }
 
 Index.layout = (page) => (
-    <Base key={page} children={page} title={`Manage Menu Website`} />
+    <Base key={page} children={page} title={`Manage Blog Category`} />
 );
