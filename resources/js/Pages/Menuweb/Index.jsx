@@ -3,30 +3,40 @@ import React, { useState } from "react";
 import Dialog from "../../Components/Dashboard/Dialog";
 import Base from "../../Layouts/Base";
 import useDialog from "../../Hooks/useDialog";
-import CreateUser from "../../Components/Dashboard/Users/CreateUser";
-import EditUser from "../../Components/Dashboard/Users/EditUser";
 import { Inertia } from "@inertiajs/inertia";
+import Create from "../../Components/Dashboard/Menuweb/Create";
+import Edit from "../../Components/Dashboard/Menuweb/Edit";
 
 export default function Index(props) {
     const title = props.title;
     const { data: menuweb, links, meta } = props.menuweb;
     const [state, setState] = useState([]);
-    const [addDialogHandler, addCloseTrigger, addTrigger] = useDialog();
-    const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
-        useDialog();
-    const [destroyDialogHandler, destroyCloseTrigger, destroyTrigger] =
-        useDialog();
-    const openUpdateDialog = (user) => {
-        setState(user);
+    const [
+        addDialogHandler,
+        addCloseTrigger,
+        addTrigger,
+        UpdateDialogHandler,
+        UpdateCloseTrigger,
+        UpdateTrigger,
+        destroyDialogHandler,
+        destroyCloseTrigger,
+        destroyTrigger,
+    ] = useDialog();
+    // const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
+    //     useDialog();
+    // const [destroyDialogHandler, destroyCloseTrigger, destroyTrigger] =
+    //     useDialog();
+    const openUpdateDialog = (menuweb) => {
+        setState(menuweb);
         UpdateDialogHandler();
     };
 
-    const openDestroyDialog = (user) => {
-        setState(user);
+    const openDestroyDialog = (menuweb) => {
+        setState(menuweb);
         destroyDialogHandler();
     };
 
-    const destroyUser = () => {
+    const destroyMenuweb = () => {
         Inertia.delete(route("menuweb.destroy", state.id), {
             onSuccess: () => destroyCloseTrigger(),
         });
@@ -36,21 +46,21 @@ export default function Index(props) {
         <>
             <div className="container-fluid py-4">
                 <Dialog trigger={addTrigger} title={`Create New ${title}`}>
-                    <CreateUser close={addCloseTrigger} />
+                    <Create close={addCloseTrigger} />
                 </Dialog>
 
                 <Dialog
                     trigger={UpdateTrigger}
-                    title={`Update User: ${state.name}`}
+                    title={`Update ${title}: ${state.name}`}
                 >
-                    <EditUser model={state} close={UpdateCloseTrigger} />
+                    <Edit model={state} close={UpdateCloseTrigger} />
                 </Dialog>
 
                 <Dialog
                     trigger={destroyTrigger}
-                    title={`Delete User: ${state.name}`}
+                    title={`Delete ${title}: ${state.name}`}
                 >
-                    <p>Are you sure to delete this user ?</p>
+                    <p>Are you sure to delete this {title}?</p>
                     <div className="modal-footer">
                         <button
                             type="button"
@@ -61,7 +71,7 @@ export default function Index(props) {
                         </button>
                         <button
                             type="submit"
-                            onClick={destroyUser}
+                            onClick={destroyMenuweb}
                             className="btn bg-gradient-danger"
                         >
                             Delete
@@ -164,7 +174,7 @@ export default function Index(props) {
                                                                 type="button"
                                                                 onClick={() =>
                                                                     openUpdateDialog(
-                                                                        user
+                                                                        menuweb
                                                                     )
                                                                 }
                                                                 className="btn btn-vimeo btn-icon-only mx-2"
@@ -177,7 +187,7 @@ export default function Index(props) {
                                                                 type="button"
                                                                 onClick={() =>
                                                                     openDestroyDialog(
-                                                                        user
+                                                                        menuweb
                                                                     )
                                                                 }
                                                                 className="btn btn-youtube btn-icon-only"

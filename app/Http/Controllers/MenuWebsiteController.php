@@ -45,7 +45,12 @@ class MenuWebsiteController extends Controller
      */
     public function store(StoreMenuWebsiteRequest $request)
     {
-        //
+        $attr = $request->toArray();
+        MenuWebsite::create($attr);
+        return back()->with([
+            'type' => 'success',
+            'message' => $this->title . ' created successfully',
+        ]);
     }
 
     /**
@@ -79,7 +84,12 @@ class MenuWebsiteController extends Controller
      */
     public function update(UpdateMenuWebsiteRequest $request, MenuWebsite $menuWebsite)
     {
-        //
+        $attr = $request->toArray();
+        $menuWebsite->update($attr);
+        return back()->with([
+            'type' => 'success',
+            'message' => $this->title . ' updated successfully',
+        ]);
     }
 
     /**
@@ -90,6 +100,10 @@ class MenuWebsiteController extends Controller
      */
     public function destroy(MenuWebsite $menuWebsite)
     {
-        //
+        $menuWebsite->delete();
+        return back()->with([
+            'type' => 'success',
+            'message' => $this->title . ' deleted successfully'
+        ]);
     }
 }
