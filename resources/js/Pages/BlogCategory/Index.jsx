@@ -3,31 +3,31 @@ import React, { useState } from "react";
 import Dialog from "../../Components/Dashboard/Dialog";
 import Base from "../../Layouts/Base";
 import useDialog from "../../Hooks/useDialog";
-import CreateUser from "../../Components/Dashboard/Users/CreateUser";
-import EditUser from "../../Components/Dashboard/Users/EditUser";
 import { Inertia } from "@inertiajs/inertia";
+import Create from "../../Components/Dashboard/BlogCategory/Create";
+import Edit from "../../Components/Dashboard/BlogCategory/Edit";
 
 export default function Index(props) {
     const title = props.title;
-    const { data: menuweb, links, meta } = props.blogcat;
+    const { data: blogcat, links, meta } = props.blogcat;
     const [state, setState] = useState([]);
     const [addDialogHandler, addCloseTrigger, addTrigger] = useDialog();
     const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
         useDialog();
     const [destroyDialogHandler, destroyCloseTrigger, destroyTrigger] =
         useDialog();
-    const openUpdateDialog = (user) => {
-        setState(user);
+    const openUpdateDialog = (blogcat) => {
+        setState(blogcat);
         UpdateDialogHandler();
     };
 
-    const openDestroyDialog = (user) => {
-        setState(user);
+    const openDestroyDialog = (blogcat) => {
+        setState(blogcat);
         destroyDialogHandler();
     };
 
     const destroyUser = () => {
-        Inertia.delete(route("menuweb.destroy", state.id), {
+        Inertia.delete(route("blogcategory.destroy", state.id), {
             onSuccess: () => destroyCloseTrigger(),
         });
     };
@@ -36,21 +36,21 @@ export default function Index(props) {
         <>
             <div className="container-fluid py-4">
                 <Dialog trigger={addTrigger} title={`Create New ${title}`}>
-                    <CreateUser close={addCloseTrigger} />
+                    <Create close={addCloseTrigger} />
                 </Dialog>
 
                 <Dialog
                     trigger={UpdateTrigger}
-                    title={`Update User: ${state.name}`}
+                    title={`Update ${title}: ${state.name}`}
                 >
-                    <EditUser model={state} close={UpdateCloseTrigger} />
+                    <Edit model={state} close={UpdateCloseTrigger} />
                 </Dialog>
 
                 <Dialog
                     trigger={destroyTrigger}
-                    title={`Delete User: ${state.name}`}
+                    title={`Delete ${title}: ${state.name}`}
                 >
-                    <p>Are you sure to delete this user ?</p>
+                    <p>Are you sure to delete this {title}?</p>
                     <div className="modal-footer">
                         <button
                             type="button"
@@ -116,8 +116,8 @@ export default function Index(props) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {menuweb.map((menuweb, index) => (
-                                                <tr key={menuweb.id}>
+                                            {blogcat.map((blogcat, index) => (
+                                                <tr key={blogcat.id}>
                                                     <td className="text-center">
                                                         {meta.from + index}
                                                     </td>
@@ -132,7 +132,7 @@ export default function Index(props) {
                                                             <div className="my-auto">
                                                                 <h6 className="mb-0 text-sm">
                                                                     {
-                                                                        menuweb.name
+                                                                        blogcat.name
                                                                     }
                                                                 </h6>
                                                             </div>
@@ -140,7 +140,7 @@ export default function Index(props) {
                                                     </td>
                                                     <td className="text-left">
                                                         <span className="text-xs font-weight-bold">
-                                                            {menuweb.isPub == 1
+                                                            {blogcat.isPub == 1
                                                                 ? "yes"
                                                                 : "no"}
                                                         </span>
@@ -154,7 +154,7 @@ export default function Index(props) {
                                                                 type="button"
                                                                 onClick={() =>
                                                                     openUpdateDialog(
-                                                                        user
+                                                                        blogcat
                                                                     )
                                                                 }
                                                                 className="btn btn-vimeo btn-icon-only mx-2"
@@ -167,7 +167,7 @@ export default function Index(props) {
                                                                 type="button"
                                                                 onClick={() =>
                                                                     openDestroyDialog(
-                                                                        user
+                                                                        blogcat
                                                                     )
                                                                 }
                                                                 className="btn btn-youtube btn-icon-only"

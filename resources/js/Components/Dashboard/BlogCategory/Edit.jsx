@@ -1,22 +1,29 @@
 import { useForm } from "@inertiajs/inertia-react";
-import React from "react";
+import React, { useEffect } from "react";
 
-export default function Create({ close }) {
-    const { data, setData, post, reset, errors } = useForm({
-        name: "",
+export default function Edit({ close, model }) {
+    const { data, setData, put, reset, errors } = useForm({
+        name: model.name,
     });
 
     const onChange = (e) => setData({ ...data, [e.target.id]: e.target.value });
 
     const onSubmit = (e) => {
         e.preventDefault();
-        post(route("blogcategory.store"), {
+        put(route("blogcategory.update", model.id), {
             data,
             onSuccess: () => {
                 reset(), close();
             },
         });
     };
+
+    useEffect(() => {
+        setData({
+            ...data,
+            name: model.name,
+        });
+    }, [model]);
 
     return (
         <>
@@ -50,7 +57,7 @@ export default function Create({ close }) {
                         Close
                     </button>
                     <button type="submit" className="btn bg-gradient-primary">
-                        Save
+                        Update
                     </button>
                 </div>
             </form>
