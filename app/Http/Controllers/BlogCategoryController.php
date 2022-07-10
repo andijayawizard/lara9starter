@@ -40,7 +40,12 @@ class BlogCategoryController extends Controller
      */
     public function store(StoreBlogCategoryRequest $request)
     {
-        //
+        $attr = $request->toArray();
+        BlogCategory::create($attr);
+        return back()->with([
+            'type' => 'success',
+            'message' => $this->title . ' has been created',
+        ]);
     }
 
     /**
@@ -74,7 +79,12 @@ class BlogCategoryController extends Controller
      */
     public function update(UpdateBlogCategoryRequest $request, BlogCategory $blogCategory)
     {
-        //
+        $attr = $request->toArray();
+        $blogCategory->update($attr);
+        return back()->with([
+            'type' => 'success',
+            'message' => $this->title . ' has been updated',
+        ]);
     }
 
     /**
@@ -85,6 +95,10 @@ class BlogCategoryController extends Controller
      */
     public function destroy(BlogCategory $blogCategory)
     {
-        //
+        $blogCategory->delete();
+        return back()->with([
+            'type' => 'success',
+            'message' => $this->title . ' has been deleted',
+        ]);
     }
 }
