@@ -10,7 +10,17 @@ import { Inertia } from "@inertiajs/inertia";
 export default function Index(props) {
     const { data: users, links, meta } = props.users;
     const [state, setState] = useState([]);
-    const [addDialogHandler, addCloseTrigger, addTrigger] = useDialog();
+    const [
+        addDialogHandler,
+        addCloseTrigger,
+        addTrigger,
+        // UpdateDialogHandler,
+        // UpdateCloseTrigger,
+        // UpdateTrigger,
+        // destroyDialogHandler,
+        // destroyCloseTrigger,
+        // destroyTrigger,
+    ] = useDialog();
     const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
         useDialog();
     const [destroyDialogHandler, destroyCloseTrigger, destroyTrigger] =
