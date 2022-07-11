@@ -15,17 +15,17 @@ export default function Index(props) {
         addDialogHandler,
         addCloseTrigger,
         addTrigger,
-        UpdateDialogHandler,
-        UpdateCloseTrigger,
-        UpdateTrigger,
-        destroyDialogHandler,
-        destroyCloseTrigger,
-        destroyTrigger,
+        // UpdateDialogHandler,
+        // UpdateCloseTrigger,
+        // UpdateTrigger,
+        // destroyDialogHandler,
+        // destroyCloseTrigger,
+        // destroyTrigger,
     ] = useDialog();
-    // const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
-    //     useDialog();
-    // const [destroyDialogHandler, destroyCloseTrigger, destroyTrigger] =
-    //     useDialog();
+    const [UpdateDialogHandler, UpdateCloseTrigger, UpdateTrigger] =
+        useDialog();
+    const [destroyDialogHandler, destroyCloseTrigger, destroyTrigger] =
+        useDialog();
     const openUpdateDialog = (menuweb) => {
         setState(menuweb);
         UpdateDialogHandler();
