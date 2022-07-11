@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MenuWebsiteRequest;
 use App\Models\MenuWebsite;
 use App\Http\Requests\StoreMenuWebsiteRequest;
 use App\Http\Requests\UpdateMenuWebsiteRequest;
@@ -43,7 +44,7 @@ class MenuWebsiteController extends Controller
      * @param  \App\Http\Requests\StoreMenuWebsiteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMenuWebsiteRequest $request)
+    public function store(MenuWebsiteRequest $request)
     {
         $attr = $request->toArray();
         MenuWebsite::create($attr);
@@ -82,7 +83,7 @@ class MenuWebsiteController extends Controller
      * @param  \App\Models\MenuWebsite  $menuWebsite
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMenuWebsiteRequest $request, MenuWebsite $menuWebsite)
+    public function update(MenuWebsiteRequest $request, MenuWebsite $menuWebsite)
     {
         $attr = $request->toArray();
         $menuWebsite->update($attr);
