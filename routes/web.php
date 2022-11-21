@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuWebsiteController;
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('menuweb', MenuWebsiteController::class);
     Route::resource('blogcategory', BlogCategoryController::class);
     Route::resource('blog', BlogController::class);
+    Route::resource('customer', CustomerController::class);
     Route::get('profile', ProfileController::class)->name('profile');
 });
 

@@ -127,6 +127,19 @@ export default function Sidebar() {
                     </li>
                     <li className="nav-item">
                         <Link
+                            className={`${
+                                route().current("blog.*") && active
+                            } nav-link`}
+                            href={route("customer.index")}
+                        >
+                            <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i className="fas fa-user-lock text-warning text-sm opacity-10" />
+                            </div>
+                            <span className="nav-link-text ms-1">Customer</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link
                             className="nav-link "
                             as="a"
                             method="post"

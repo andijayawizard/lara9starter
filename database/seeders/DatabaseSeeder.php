@@ -23,8 +23,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'andika',
             'password' => '12qwaszx'
         ]);
-        $this->call(MenuWebsiteSeeder::class);
-        $this->call(BlogCategorySeeder::class);
+        $this->call([MenuWebsiteSeeder::class, BlogCategorySeeder::class, CustomerSeeder::class]);
         Blog::factory(3)->create();
     }
 }

@@ -6092,6 +6092,21 @@ function Sidebar() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
           className: "nav-item",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+            className: "".concat(route().current("blog.*") && active, " nav-link"),
+            href: route("customer.index"),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              className: "icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                className: "fas fa-user-lock text-warning text-sm opacity-10"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "nav-link-text ms-1",
+              children: "Customer"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
+          className: "nav-item",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
             className: "nav-link ",
             as: "a",
             method: "post",
@@ -7791,6 +7806,16 @@ Index.layout = function (page) {
     title: "Manage Blog Category"
   }, page);
 };
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Customer/Index.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Customer/Index.jsx ***!
+  \***********************************************/
+/***/ (() => {
+
+
 
 /***/ }),
 
@@ -50453,6 +50478,8 @@ var map = {
 	"./Blog/Index.jsx": "./resources/js/Pages/Blog/Index.jsx",
 	"./BlogCategory/Index": "./resources/js/Pages/BlogCategory/Index.jsx",
 	"./BlogCategory/Index.jsx": "./resources/js/Pages/BlogCategory/Index.jsx",
+	"./Customer/Index": "./resources/js/Pages/Customer/Index.jsx",
+	"./Customer/Index.jsx": "./resources/js/Pages/Customer/Index.jsx",
 	"./Dashboard": "./resources/js/Pages/Dashboard.jsx",
 	"./Dashboard.jsx": "./resources/js/Pages/Dashboard.jsx",
 	"./Home": "./resources/js/Pages/Home.jsx",
